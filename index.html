@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMN322: Data in IoT - Interactive Simulations</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>CMN322: Data in IoT - Interactive Simulations</h1>
+        <p>Week 9 | Mr. Eremas Tade | Semester 2, 2025</p>
+    </header>
+
+    <div class="container">
+        <nav class="tab-navigation">
+            <button class="tab-button active" data-tab="data-types">Data Types</button>
+            <button class="tab-button" data-tab="big-data">Big Data 4Vs</button>
+            <button class="tab-button" data-tab="processing">Real-time vs Batch</button>
+            <button class="tab-button" data-tab="sql-demo">SQL Demo</button>
+        </nav>
+
+        <section id="data-types" class="tab-content active">
+            <h2>IoT Data Types Simulation</h2>
+            <div class="simulation-grid">
+                <div class="simulation-card structured-data">
+                    <h3>Structured Data</h3>
+                    <table id="sensor-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Device ID</th>
+                                <th>Temperature (°C)</th>
+                                <th>Humidity (%)</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sensor-tbody"></tbody>
+                    </table>
+                    <div class="controls">
+                        <button id="toggle-structured" class="btn btn-primary">Start Simulation</button>
+                        <button id="clear-structured" class="btn btn-secondary">Clear Data</button>
+                    </div>
+                </div>
+                <div class="sub-grid">
+                    <div class="simulation-card unstructured-data">
+                        <h3>Unstructured Data</h3>
+                        <div id="log-messages" class="data-display log-container"></div>
+                        <div class="controls">
+                            <button id="toggle-unstructured" class="btn btn-primary">Start Log Stream</button>
+                            <button id="clear-unstructured" class="btn btn-secondary">Clear Logs</button>
+                        </div>
+                    </div>
+
+                    <div class="simulation-card semi-structured-data">
+                        <h3>Semi-Structured Data (JSON)</h3>
+                        <pre id="json-display" class="data-display"></pre>
+                        <div class="controls">
+                            <button id="toggle-json" class="btn btn-primary">Start JSON Stream</button>
+                            <button id="clear-json" class="btn btn-secondary">Clear JSON</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="big-data" class="tab-content">
+            <h2>Big Data 4Vs in IoT</h2>
+            <div class="four-vs-grid">
+                <div class="vs-card volume-card">
+                    <h3>Volume</h3>
+                    <div class="metric-display">
+                        <div class="metric-value" id="volume-count">0</div>
+                        <div class="metric-label">Records Generated</div>
+                    </div>
+                </div>
+
+                <div class="vs-card velocity-card">
+                    <h3>Velocity</h3>
+                    <div class="metric-display">
+                        <div class="metric-value" id="velocity-rate">10</div>
+                        <div class="metric-label">Records/Second</div>
+                    </div>
+                    <div class="velocity-controls">
+                        <label>Speed: <input type="range" id="velocity-slider" min="5" max="50" value="10"></label>
+                    </div>
+                </div>
+
+                <div class="vs-card variety-card">
+                    <h3>Variety</h3>
+                    <canvas id="variety-chart" width="200" height="200"></canvas>
+                </div>
+
+                <div class="vs-card veracity-card">
+                    <h3>Veracity</h3>
+                    <div class="metric-display">
+                        <div class="metric-value" id="quality-score">100%</div>
+                        <div class="metric-label">Data Quality</div>
+                    </div>
+                    <canvas id="veracity-chart" width="200" height="150"></canvas>
+                </div>
+            </div>
+            <div class="big-data-controls">
+                <button id="start-big-data" class="btn btn-accent4">Start Big Data Simulation</button>
+                <button id="stop-big-data" class="btn btn-accent2">Stop Simulation</button>
+                <button id="reset-big-data" class="btn btn-secondary">Reset Counters</button>
+            </div>
+        </section>
+
+        <section id="processing" class="tab-content">
+            <h2>Data Processing: Real-time vs Batch</h2>
+            <div class="processing-comparison">
+                <div class="processing-card batch-processing">
+                    <h3>Data at Rest (Batch Processing)</h3>
+                    <div class="process-flow">
+                        <span class="flow-step">Store</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-step">Analyze</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-step">Notify</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-step">Act</span>
+                    </div>
+                    <div class="batch-storage">
+                        <div class="storage-info">Stored Records: <span id="batch-count">0</span></div>
+                        <div id="batch-queue" class="batch-queue"></div>
+                    </div>
+                    <button id="process-batch" class="btn btn-accent1">Generate Batch</button>
+                </div>
+
+                <div class="processing-card stream-processing">
+                    <h3>Data in Motion (Real-time Processing)</h3>
+                    <div class="process-flow">
+                        <span class="flow-step">Analyze</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-step">Act</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-step">Notify</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-step">Store</span>
+                    </div>
+                    <div class="stream-processor">
+                        <div class="stream-info">Processing Rate: <span id="stream-rate">0</span> msg/s</div>
+                        <div id="stream-flow" class="stream-flow"></div>
+                    </div>
+                    <button id="toggle-stream" class="btn btn-accent4">Start Stream</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="sql-demo" class="tab-content">
+            <h2>SQL with IoT Data - Interactive Demo</h2>
+            <div class="sql-demo-container">
+                <div class="sql-editor">
+                    <h3>SQL Query Editor</h3>
+                    <textarea id="sql-input">SELECT * FROM sensor_data WHERE temperature > 25;</textarea>
+                    <div class="sql-controls">
+                        <button id="execute-sql" class="btn btn-primary">Execute Query</button>
+                        <button id="sample-queries" class="btn btn-secondary">Sample Queries</button>
+                        <button id="generate-data" class="btn btn-accent1">Generate Sample Data</button>
+                    </div>
+                    <div id="query-stats" class="query-stats"></div>
+                </div>
+
+                <div class="sql-results">
+                    <h3>Query Results</h3>
+                    <div id="sql-output" class="data-display"></div>
+                </div>
+            </div>
+
+            <div class="sample-queries hidden">
+                <h3>Sample IoT Queries</h3>
+                <ul class="query-examples">
+                    <li><button class="query-btn" data-query="SELECT * FROM sensor_data ORDER BY timestamp DESC LIMIT 10;">Latest 10 readings</button></li>
+                    <li><button class="query-btn" data-query="SELECT device_id, AVG(temperature) as avg_temp FROM sensor_data GROUP BY device_id;">Average temp by device</button></li>
+                    <li><button class="query-btn" data-query="SELECT * FROM sensor_data WHERE temperature > 30 AND humidity < 40;">High temp, low humidity</button></li>
+                    <li><button class="query-btn" data-query="SELECT DATE(timestamp) as day, COUNT(*) as count FROM sensor_data GROUP BY day;">Daily reading counts</button></li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 CMN322 - Internet of Things | Mr. Eremas Tade | Educational Use</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
